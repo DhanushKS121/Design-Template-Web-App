@@ -1,0 +1,97 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    text-align: center;
+}
+
+#fullbody{
+}
+
+.tools{
+    margin-top: 40px;
+    display: flex;
+    gap: 3%;
+    :nth-child(1){
+        margin-left: 20%;
+    }
+    div{
+        border: 2px solid black;
+        width: 100px;
+        height: 50px;
+        padding: 10px 10px;
+    }
+}
+
+#pageSizeInput{
+    background-color: yellow;
+    width: 20%;
+    margin-left: 40%;
+    height: 150px;
+    padding: 20px 20px;
+    border-radius: 12px;
+    select,button{
+        height: 30px;
+        border-radius: 12px;
+        font-size: 8pt;
+    }
+    .btn{
+        cursor: pointer;
+        width: 80px;
+        margin-top: 10px;
+        margin-left: 10px;
+        color: white;
+        border: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+  #pageSizeInput {
+    width: 80%;
+    margin-left: 10%;
+    display: flex;
+    height: 220px;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    .btn{
+        width: 200px;
+    }
+  }
+
+  select {
+    width: 90%;
+    padding: 8px;
+    height: 20px;
+    font-size: 14px;
+  }
+
+  label {   
+    font-size: 14px;
+    text-align: center;
+  }
+
+  input[type="color"],
+  input[type="file"] {
+    width: 90%;
+    padding: 5px;
+  }
+  .btn {
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .btn:first-of-type {
+    background-color: purple;
+  }
+
+  .btn:last-of-type {
+    background-color: red;
+  }
+}
