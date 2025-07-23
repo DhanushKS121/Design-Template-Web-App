@@ -38,7 +38,6 @@ const Design = () => {
       setDroppedItems(JSON.parse(savedItems));
     }
   }, []);
-  console.log('design',data)
   const handleSelect = (e) => {
     setSelectedSize(e.target.value);
   };

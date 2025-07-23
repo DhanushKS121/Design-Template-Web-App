@@ -42,7 +42,6 @@ const NestedDropdown = ({ data, isDragging, setIsDragging }) => {
       event.dataTransfer.setData("text/plain", dataToSend);
       setIsDragging(true);
       const match = dataToSend.match(/"trust_name":\s*"(\w+)"/);
-      console.log("Dragged:", match);
     }
   };
 

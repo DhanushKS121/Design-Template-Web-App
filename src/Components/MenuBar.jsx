@@ -2,9 +2,7 @@ import React, { useState,useMemo,useEffect } from 'react';
 import './Canvas.css'
 
 const deleteElement= (itemId,droppedItems,setDroppedItems) => {
-  console.log(itemId)
   const element=document.getElementById(itemId);
-  console.log(element)
   element.remove();
   const updatedItems = droppedItems.filter(item => item.id !== itemId);
   setDroppedItems(updatedItems)
@@ -61,7 +59,6 @@ const deleteColumn = (itemId,droppedItems,setDroppedItems) => {
 
 const enableResize = (itemId,droppedItems,setDroppedItems) => {
   const element = document.getElementById(itemId);
-  console.log(element)
   if (!element) return;
 
   element.style.position = 'relative';
@@ -86,7 +83,6 @@ const enableResize = (itemId,droppedItems,setDroppedItems) => {
   element.appendChild(resizer);
   
   resizer.addEventListener('mousedown', (e) => {
-    console.log('here')
     e.preventDefault();
     e.stopPropagation();
 
@@ -98,7 +94,6 @@ const enableResize = (itemId,droppedItems,setDroppedItems) => {
     startHeight = element.clientHeight;
     document.addEventListener('mousemove', resizeElement);
     document.addEventListener('mouseup', stopResize);
-    console.log(droppedItems)
   });
 
   const resizeElement = (e) => {
@@ -106,7 +101,6 @@ const enableResize = (itemId,droppedItems,setDroppedItems) => {
     if (!isResizing) return;
 
     // Update width and height only
-    console.log(itemId)
 
     element.style.width.replace('px','');
     element.style.height.replace('px','')
@@ -209,7 +203,6 @@ const FontEditor = ({ itemId, setFontEdit, droppedItems, setDroppedItems }) => {
   }, [thisItem]);
 
   const applyChanges = () => {
-    console.log('traverse',traverse)
     const updatedItems = droppedItems.map((item) =>
       item.id === itemId
         ? {
@@ -366,7 +359,6 @@ const FontEditor = ({ itemId, setFontEdit, droppedItems, setDroppedItems }) => {
 
 
 const rotate90deg = (itemId, droppedItems, setDroppedItems ) => {
-  console.log('oj',droppedItems,itemId)
   const updatedItems = droppedItems.map(item => {
     if (item.id === itemId) {
       return {
@@ -432,7 +424,6 @@ const MenuBar = ({ menuVisible, menuType, menuRef, menuPosition, itemId, setMenu
         setFontEdit(true); // Keep font editor visible
         break;
       case "Rotate 90deg":
-        console.log('okok',droppedItems)
         rotate90deg(itemId, droppedItems, setDroppedItems);
         break;
       default:

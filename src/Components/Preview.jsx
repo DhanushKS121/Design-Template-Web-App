@@ -28,7 +28,6 @@ const Preview = () => {
     reader.readAsText(file);
   };
 
-  console.log('preview',data  )
   const renderItem = (item) =>{
     const itemvalue=item.value;
     switch (item.type) {
@@ -100,7 +99,6 @@ const Preview = () => {
                 </label>
               );
         case 'Box':
-          console.log(item)
           return <div id={item.id} style={{width:item.width.replace('pxpx','px'),height:item.height.replace('pxpx','px'),border: `${item.bordersize || '2px'} solid ${item.bordercolor || 'black'}`,backgroundColor:item.backgroundcolor}} ></div>
         case 'Circle':
           return <div id={item.id} style={{width:item.width,height:item.height,border: `${item.bordersize || '2px'} solid ${item.bordercolor || 'black'}`,backgroundColor:item.backgroundcolor,borderRadius:'50%'}} ></div>
@@ -109,7 +107,6 @@ const Preview = () => {
           case "ValueTable":
             const jsonData=data
             const itemValue=itemvalue
-            console.log(itemvalue)
                             // Extract the object from the JSON based on the key
                             // Function to get a nested value using dot notation (e.g., "grading_scales.scholastic")
             const getNestedValue = (obj, path) => {
@@ -229,20 +226,12 @@ const Preview = () => {
           return <div>{renderTable(extractedData)}</div>;
 
               case "ValueLabel":
-                console.log('value',itemvalue)
                 const string = itemvalue;
                 const text = itemvalue;
                 const resultArray = text.match(/[a-zA-Z0-9_]+/g); // Extract words and numbers
-                console.log(resultArray);
 
                 // Extract value inside square brackets
                 const match = string.match(/\[(.*?)\]/);
-                
-                if (match) {
-                    console.log("Value inside brackets:", match[1]);
-                } else {
-                    console.log("No brackets found");
-                }
                 
                 const getValue = (data, itemValue) => {
                   if (!itemValue) return null;
@@ -297,6 +286,23 @@ const Preview = () => {
           return null;
       }
     }
+    
+    const styles = {
+      uploadLabel: {
+        display: 'inline-block',
+        padding: '10px 20px',
+        backgroundColor: '#4CAF50',
+        color: 'white',
+        borderRadius: '8px',
+        cursor: 'pointer',
+        fontWeight: 'bold',
+        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+        transition: 'background-color 0.3s ease',
+      },
+      hiddenInput: {
+        display: 'none'
+      }
+    };
 
   return (
     <>
@@ -306,7 +312,17 @@ const Preview = () => {
 
       <div>
 
-      <input type="file" accept=".json" onChange={handleFileUpload} />
+      <label htmlFor="jsonUpload" style={styles.uploadLabel}>
+        Upload JSON
+        <input
+          id="jsonUpload"
+          type="file"
+          accept=".json"
+          onChange={handleFileUpload}
+          style={styles.hiddenInput}
+        />
+      </label>
+
       {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
 

@@ -75,7 +75,6 @@ const Canvas = ({ pageWidth, pageHeight, droppedItems, setDroppedItems, divRef,p
         { type: itemType, x: offsetX, y: offsetY, id: itemLocalId, width, height, row: 3, column: 3, isEditing: true }
       ];
       localStorage.setItem("droppedItems", JSON.stringify(updatedItems));
-      console.log(itemType,'')
       return updatedItems;
     });
     
@@ -164,23 +163,18 @@ const Canvas = ({ pageWidth, pageHeight, droppedItems, setDroppedItems, divRef,p
   // Handle Drop
   const handleValueDrop = (event, item) => {
     event.preventDefault();
-    console.log("Dropped on:", item);
     const value = event.dataTransfer.getData("text/plain");
-    console.log("Dropped Value:", value);
 
     try {
         const parsedValue = JSON.parse(value); // Convert string back to object if valid
-        console.log("Parsed JSON:", parsedValue);
 
         const numRows = Object.keys(parsedValue).length;
         const firstKey = Object.keys(parsedValue)[0];
         const firstValue = parsedValue[firstKey];
 
         const numCols = typeof firstValue === "object" && firstValue !== null ? 3 : 2;
-        console.log(`Rows: ${numRows}, Columns: ${numCols}`);
 
         let pathvalue = findKeyPath(data, parsedValue);
-        console.log("Path:", pathvalue);
 
         const updatedItems = droppedItems.map((ele) =>
             ele.id === item.id
@@ -197,10 +191,8 @@ const Canvas = ({ pageWidth, pageHeight, droppedItems, setDroppedItems, divRef,p
     } catch {
         try {
             new URL(value); // Validate if it's a URL
-            console.log("The value is a valid URL:", value);
         } catch {
-            if (isRelativeAddress(value)) {
-                console.log("Detected as an address");
+            if (isRelativeAddress(value)) { 
                 let pathvalue = findKeyPath(data, value);
                 const updatedItems = droppedItems.map((ele) =>
                     ele.id === item.id
@@ -215,9 +207,7 @@ const Canvas = ({ pageWidth, pageHeight, droppedItems, setDroppedItems, divRef,p
                 );
                 setDroppedItems(updatedItems);
             } else {
-                console.log("Detected as a label");
                 let pathvalue = findKeyPath(data, value);
-                console.log("Path:", pathvalue);
                 const updatedItems = droppedItems.map((ele) =>
                     ele.id === item.id ? { ...ele, type: "ValueLabel", value: pathvalue } : ele
                 );
@@ -346,7 +336,6 @@ function findKeyPath(obj, target, path = "") {
                 case "ValueTable":
                   const jsonData=data
                   const itemValue=itemvalue
-                  console.log(itemvalue)
                                   // Extract the object from the JSON based on the key
                                   // Function to get a nested value using dot notation (e.g., "grading_scales.scholastic")
                   const getNestedValue = (obj, path) => {
@@ -463,7 +452,6 @@ function findKeyPath(obj, target, path = "") {
 
                 return <div>{renderTable(extractedData)}</div>;
           case "ValueLabel":
-                console.log('type ',item.type,'data',item.value)
                   return (
                       <label
                           id={item.id}
@@ -574,7 +562,6 @@ function findKeyPath(obj, target, path = "") {
                   case "ValueTable":
                     const jsonData=data
                     const itemValue=itemvalue
-                    console.log(itemvalue)
                                     // Extract the object from the JSON based on the key
                                     // Function to get a nested value using dot notation (e.g., "grading_scales.scholastic")
                     const getNestedValue = (obj, path) => {
@@ -697,16 +684,10 @@ function findKeyPath(obj, target, path = "") {
                   const string = itemvalue;
                   const text = itemvalue;
                   const resultArray = text.match(/[a-zA-Z0-9_]+/g); // Extract words and numbers
-                  console.log(resultArray);
 
                   // Extract value inside square brackets
                   const match = string.match(/\[(.*?)\]/);
                   
-                  if (match) {
-                      console.log("Value inside brackets:", match[1]);
-                  } else {
-                      console.log("No brackets found");
-                  }
                   
                   const getValue = (data, itemValue) => {
                     if (!itemValue) return null;
