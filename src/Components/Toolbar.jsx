@@ -22,6 +22,18 @@ const Toolbar = ({ pageSize, selectedSize, handleSelect, handleConfirmSize, hand
   }
   console.log('tool',data)
   return (
+    <>
+    <div style={{marginBottom : 12}}>
+      <h1>Design Trove</h1>
+      <a 
+        href="https://www.linkedin.com/in/dhanush-k-s-07a635284" 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </a>
+
+    </div>
     <div id="pageSizeInput">
       <select onChange={handleSelect} value={selectedSize}>
         <option value="" disabled>
@@ -39,6 +51,7 @@ const Toolbar = ({ pageSize, selectedSize, handleSelect, handleConfirmSize, hand
       <button className="btn" style={{backgroundColor:'purple'}} onClick={handleConfirmSize}>Confirm Size</button>
       <button className="btn" style={{backgroundColor:'red'}}  onClick={handleReset}>Reset</button>
     </div>
+    </>
   );
 };
 
