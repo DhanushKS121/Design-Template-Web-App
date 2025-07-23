@@ -158,3 +158,57 @@
     }
   }
   
+
+  .entryPage {
+    background-image: url('../../public/mainBg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;     /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
+    height: 100vh;           /* Full viewport height */
+  h1{
+    color: yellow;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: transparent;
+  }
+  button {
+    width: 100px;
+    height: 35px;
+    background-color: aqua;
+    border: none;
+    border-radius: 12px;
+    margin-left: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    transition: all 0.3s ease-in-out;
+  }
+
+  button:hover {
+    cursor: pointer;
+    animation: radius 0.8s ease-in-out infinite;
+  }
+
+
+}
+
+
+@keyframes waveBounce {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-5px) rotate(-2deg); }
+  50%  { transform: translateY(2px) rotate(2deg); }
+  70%  { transform: translateY(-2px) rotate(-1deg); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes radius {
+  0%{
+    box-shadow: 0px 0px 0px white;
+  }
+  50%{
+    box-shadow: 0px 0px 100px white;
+  }
+  100%{
+    box-shadow: 0px 0px 0 white;
+  }
+}
+
